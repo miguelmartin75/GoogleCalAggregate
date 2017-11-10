@@ -28,10 +28,11 @@ You can generate or update an aggregate calander by running:
 python cal/main.py generate
 ```
 
-## Generate/Update and Maintain
+## Maintain
 
 Instead of manually forcing an update, you can simply run let the script maintain the calendar for
-you, which will run the script continuously until you have chosen to kill it. To do so, simply run:
+you, which will run the script continuously and perform the necessary updates when applicable. This will generate/update
+the calendar prior to maintaining the calendar. To do so, simply run:
 
 ```
 python cal/main.py maintain
