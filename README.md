@@ -36,3 +36,9 @@ you, which will run the script continuously until you have chosen to kill it. To
 ```
 python cal/main.py maintain
 ```
+
+# Example
+
+The default configuration aggregates calendars relating to _competitive programming_ from sources
+such as topcoder, atcoder and codeforces. The events are filtered to range between 5AM to 12AM
+Adelaide time (for the use of myself), and only SRMs and TCOs events from topcoder are considered.
