@@ -24,10 +24,17 @@ class Calander:
             for pattern in loop:
                 insert.append(re.compile(pattern))
 
+    def insert(self, service, event):
+        pass
+
+    def remove(self, service, event):
+        pass
+
     def events(self, service):
         min_time = time_now_str()
         max_time = time_now_str(config.IGNORE_EVENTS_AFTER_WEEKS)
 
+        print(self.cal_id)
         events_res = service.events().list(calendarId=self.cal_id, timeMin=min_time, timeMax=max_time, singleEvents=True).execute()
 
         events = events_res.get('items', [])
@@ -61,16 +68,14 @@ class Calander:
         return res
 
 class AggregateCal:
-    cals = None
-    service = None
+    cals = []
+    events = []
 
-    def __init__(self, service, cals, on_update_event, on_new_event, on_delete_event):
+    def __init__(self, cals):
         self.cals = cals
-        self.service = service
-        self.output_cal = output_cal
 
-    
-    def events(self):
-        # TODO
-        return None
-
+    def events(self, service):
+        res = []
+        for c in self.cals:
+            res.extend(c.events(service))
+        return res
