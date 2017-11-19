@@ -18,7 +18,7 @@ def eid(event):
 
 # assumes names are unique
 def eids(events):
-    return [ eid(event) for event in events ]
+    return [ eid(event) for event in events ]#, { eid(event): event for event in events }
 
 def diff_events(old_events, new_events, erase_add_ids=True):
     o_eids = eids(old_events)
@@ -31,6 +31,8 @@ def diff_events(old_events, new_events, erase_add_ids=True):
     # we want to add it
     for e in new_events:
         if eid(e) in o_eids:
+            # add the ID
+            #e['id'] = events[eid(e)]['id']
             update.append(e)
         else:
             add.append(e)

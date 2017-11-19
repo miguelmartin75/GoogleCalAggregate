@@ -8,6 +8,8 @@ from oauth2client import tools
 
 from cal import Calander
 
+from pytz import timezone
+
 # general config
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 CLIENT_SECRET_FILE = 'client_secret.json'
@@ -16,10 +18,15 @@ CRED_STORAGE_DIR = Path('.credentials')
 CRED_STORAGE = CRED_STORAGE_DIR / 'cred.json'
 
 # cal config
-CALENDAR_OUTPUT = Calander('7ecsc9dlip03sg8mvdcs9nltns@group.calendar.google.com')
+CALENDAR_OUTPUT = Calander('')
 IGNORE_EVENTS_AFTER_WEEKS = 52
-GLOBAL_TIME_RANGE = None
-#GLOBAL_TIME_RANGE = (5, 12) # TODO
+
+LOCAL_TIMEZONE = timezone('Australia/Adelaide')
+
+# 5am to 12am w.r.t the specified local timezone
+GLOBAL_TIME_RANGE = (5, 24)
+
+MIN_HOURS_OUTSIDE_RANGE = 1
 
 CALANDERS_QUERY = [
     # topcoder
@@ -30,7 +37,10 @@ CALANDERS_QUERY = [
     Calander('k23j233gtcvau7a8ulk2p360m4@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
 
     # codejam
-    #Calander('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE)
+    Calander('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE)
+
+    # custom events
+    Calander(''),
 ]
 
 def get_creds():

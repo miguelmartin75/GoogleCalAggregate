@@ -3,8 +3,14 @@ import re
 from util import time_now_str, convert_datetime
 import config
 
-def get_datetime_str(event):
-    return event['start'].get('dateTime', event['start'].get('date'))
+import datetime
+import pytz
+
+def get_datetime_str(event, start=True):
+    name = 'start'
+    if not start:
+        name = 'end'
+    return event[name].get('dateTime', event[name].get('date'))
 
 class Calander:
     cal_id = None
@@ -24,25 +30,25 @@ class Calander:
             for pattern in loop:
                 insert.append(re.compile(pattern))
 
-    def insert(self, service, event):
-        pass
-
-    def remove(self, service, event):
-        pass
-
     def events(self, service):
-        min_time = time_now_str()
         max_time = time_now_str(config.IGNORE_EVENTS_AFTER_WEEKS)
 
-        print(self.cal_id)
-        events_res = service.events().list(calendarId=self.cal_id, timeMin=min_time, timeMax=max_time, singleEvents=True).execute()
+        events_res = service.events().list(calendarId=self.cal_id, timeMax=max_time, singleEvents=False).execute()
 
         events = events_res.get('items', [])
 
         res = []
         for e in events:
-            name = e['summary']
+            name = e.get('summary', None)
+            if name is None:
+                continue
+
             start = convert_datetime(get_datetime_str(e))
+            end = convert_datetime(get_datetime_str(e, start=False))
+
+            # not sure what this is about, but wont work otherwise :/
+            if e['id'][0] == '_':
+                continue
 
             include = len(self.include_events) == 0
             for pattern in self.include_events:
@@ -58,11 +64,28 @@ class Calander:
             if not include:
                 continue
 
-            if self.time_range and len(self.time_range) >= 2:
-                # if the start range is out of range, skip the event
-                if start.time() < self.time_range[0] or start.time() > self.time_range[1]:
-                    continue
+            start_local = start.astimezone(config.LOCAL_TIMEZONE)
+            end_local = end.astimezone(config.LOCAL_TIMEZONE)
 
+            if self.time_range is not None:
+                if start_local == end_local:
+                    if not (start_local.hour >= self.time_range[0] and start_local.hour <= self.time_range[1]):
+                        continue
+                else:
+                    # 1D range intersection
+
+                    # max begin
+                    if self.time_range[0] > start_local.hour:
+                        start_local = start_local.replace(hour=self.time_range[0], minute=0, second=0)
+
+                    # min end
+                    if self.time_range[1] < end_local.hour:
+                        end_local = end_local.replace(hour=self.time_range[1], minute=0, second=0)
+
+                    if end_local - start_local < datetime.timedelta(hours=config.MIN_HOURS_OUTSIDE_RANGE):
+                        continue
+
+            #print(name)
             res.append(e)
 
         return res
