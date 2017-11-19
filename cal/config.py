@@ -18,7 +18,7 @@ CRED_STORAGE_DIR = Path('.credentials')
 CRED_STORAGE = CRED_STORAGE_DIR / 'cred.json'
 
 # cal config
-CALENDAR_OUTPUT = Calander('')
+CALENDAR_OUTPUT = Calander('2gjuv28dirnbr23vqfc61clloc@group.calendar.google.com')
 IGNORE_EVENTS_AFTER_WEEKS = 52
 
 LOCAL_TIMEZONE = timezone('Australia/Adelaide')
@@ -40,7 +40,7 @@ CALANDERS_QUERY = [
     Calander('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE)
 
     # custom events
-    Calander(''),
+    Calander('19hlpet55u1qlfh9e929lfpvpg@group.calendar.google.com'),
 ]
 
 def get_creds():
