@@ -37,7 +37,7 @@ CALANDERS_QUERY = [
     Calander('k23j233gtcvau7a8ulk2p360m4@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
 
     # codejam
-    Calander('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE)
+    Calander('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
 
     # custom events
     Calander('19hlpet55u1qlfh9e929lfpvpg@group.calendar.google.com'),
