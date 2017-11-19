@@ -30,18 +30,20 @@ class Calendar:
             for pattern in loop:
                 insert.append(re.compile(pattern))
 
-    def events(self, service):
+    def events(self, service, deleted=False):
         max_time = time_now_str(config.IGNORE_EVENTS_AFTER_WEEKS)
 
-        events_res = service.events().list(calendarId=self.cal_id, timeMax=max_time, singleEvents=False).execute()
+        events_res = service.events().list(calendarId=self.cal_id, timeMax=max_time, singleEvents=False, maxResults=10000, showDeleted=deleted).execute()
 
         events = events_res.get('items', [])
 
         res = []
         for e in events:
             name = e.get('summary', None)
-            if name is None:
-                continue
+
+            if not deleted:
+                if name is None:
+                    continue
 
             start = convert_datetime(get_datetime_str(e))
             end = convert_datetime(get_datetime_str(e, start=False))
@@ -97,8 +99,8 @@ class AggregateCal:
     def __init__(self, cals):
         self.cals = cals
 
-    def events(self, service):
+    def events(self, service, deleted=False):
         res = []
         for c in self.cals:
-            res.extend(c.events(service))
+            res.extend(c.events(service, deleted=deleted))
         return res

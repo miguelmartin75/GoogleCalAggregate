@@ -11,8 +11,11 @@ from cal import get_datetime_str, AggregateCal, Calendar
 import events
 
 def update_diff(service, source, output):
-    add, remove, update = events.diff_events(output.events(service), source.events(service))
-    print("Removing events...")
+    output_events = output.events(service, deleted=True)
+    source_events = source.events(service)
+
+    add, remove, update = events.diff_events(output_events, source_events)
+
     for e in remove:
         print(e['summary'])
         service.events().delete(calendarId=output.cal_id, eventId=e['id']).execute()
