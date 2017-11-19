@@ -20,23 +20,20 @@ There's probably some others, but just use pip to install the rest pls.
 
 Configuration is in the file `cal/config.py`, as I'm too lazy to make this JSON which would be easy to do but meh.
 
-## Generate or Update
+## Update and Maintain
 
-You can generate or update an aggregate calander by running:
-
-```
-python cal/main.py generate
-```
-
-## Maintain
-
-Instead of manually forcing an update, you can simply run let the script maintain the calendar for
-you, which will run the script continuously and perform the necessary updates when applicable. This will generate/update
-the calendar prior to maintaining the calendar. To do so, simply run:
+To run, simply run 
 
 ```
-python cal/main.py maintain
+python cal/main.py
 ```
+
+which will update your output calendar from the list of source calendars in `cal/config.py`.
+
+# TODO
+
+- Google App Engine
+    - For autonomous updating and OAuth2
 
 # Example
 
