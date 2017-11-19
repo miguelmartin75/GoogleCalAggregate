@@ -12,7 +12,7 @@ def get_datetime_str(event, start=True):
         name = 'end'
     return event[name].get('dateTime', event[name].get('date'))
 
-class Calander:
+class Calendar:
     cal_id = None
     include_events = None
     exclude_events = None

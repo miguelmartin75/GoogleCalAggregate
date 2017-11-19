@@ -6,7 +6,7 @@ from apiclient import discovery
 import config
 from util import convert_datetime
 
-from cal import get_datetime_str, AggregateCal, Calander
+from cal import get_datetime_str, AggregateCal, Calendar
 
 import events
 

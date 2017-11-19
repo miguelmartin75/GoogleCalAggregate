@@ -6,7 +6,7 @@ from oauth2client.file import Storage
 from oauth2client import client
 from oauth2client import tools
 
-from cal import Calander
+from cal import Calendar
 
 from pytz import timezone
 
@@ -18,7 +18,7 @@ CRED_STORAGE_DIR = Path('.credentials')
 CRED_STORAGE = CRED_STORAGE_DIR / 'cred.json'
 
 # cal config
-CALENDAR_OUTPUT = Calander('2gjuv28dirnbr23vqfc61clloc@group.calendar.google.com')
+CALENDAR_OUTPUT = Calendar('2gjuv28dirnbr23vqfc61clloc@group.calendar.google.com')
 IGNORE_EVENTS_AFTER_WEEKS = 52
 
 LOCAL_TIMEZONE = timezone('Australia/Adelaide')
@@ -30,17 +30,17 @@ MIN_HOURS_OUTSIDE_RANGE = 1
 
 CALANDERS_QUERY = [
     # topcoder
-    Calander('appirio.com_bhga3musitat85mhdrng9035jg@group.calendar.google.com', include_events=['SRM', 'TCO'], time_range=GLOBAL_TIME_RANGE),
+    Calendar('appirio.com_bhga3musitat85mhdrng9035jg@group.calendar.google.com', include_events=['SRM', 'TCO'], time_range=GLOBAL_TIME_RANGE),
     # atcoder
-    Calander('atcoder.jp_evjr135c62bddnpd26lotmdicg@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
+    Calendar('atcoder.jp_evjr135c62bddnpd26lotmdicg@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
     # codeforces
-    Calander('k23j233gtcvau7a8ulk2p360m4@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
+    Calendar('k23j233gtcvau7a8ulk2p360m4@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
 
     # codejam
-    Calander('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
+    Calendar('google.com_jqv7qt9iifsaj94cuknckrabd8@group.calendar.google.com', time_range=GLOBAL_TIME_RANGE),
 
     # custom events
-    Calander('19hlpet55u1qlfh9e929lfpvpg@group.calendar.google.com'),
+    Calendar('19hlpet55u1qlfh9e929lfpvpg@group.calendar.google.com'),
 ]
 
 def get_creds():
