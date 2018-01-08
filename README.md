@@ -12,9 +12,12 @@ A simple script to aggregate (and maintain) multiple Google Calendars using the 
 ## Requirements
 
 - python >= 3.6
+    - `pip install python-dateutil`
+    - `pip install pytz`
 - Google Calendar API installed
-
-There's probably some others, but just use pip to install the rest pls.
+    - `pip install --upgrade google-api-python-client`
+- Appropriate `client_secret.json` file with rights to write and read to a Google Cal in root
+  directory
 
 ## Configuration
 

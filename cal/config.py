@@ -49,6 +49,7 @@ def get_creds():
 
     store = Storage(str(CRED_STORAGE))
     credentials = store.get()
+    print("got creds = {}".format(credentials))
     if not credentials or credentials.invalid:
         flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
         flow.user_agent = APPLICATION_NAME
