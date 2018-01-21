@@ -49,7 +49,6 @@ Adelaide time (for the use of myself), and only SRMs and TCOs events from topcod
 To deploy, use Google App Engine. 
 
 1. Create an application in GAE
-2. Modify app.yaml to reflect the appropriate application name (in `application`) and version
-3. TODO
-
-Refer to this [document](https://cloud.google.com/appengine/docs/standard/python/tools/uploadinganapp#Python_Password-less_login_with_OAuth2) for more details.
+2. Login to Google App Engine CLI `gcloud auth login`
+3. Set the project name: `gcloud config set project <project-name>`
+4. Deploy the project: `gcloud app deploy app.yaml cron.yaml`
