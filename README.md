@@ -46,4 +46,6 @@ To deploy, use Google App Engine.
 1. Create an application in GAE
 2. Login to Google App Engine CLI `gcloud auth login`
 3. Set the project name: `gcloud config set project <project-name>`
-4. Deploy the project: `gcloud app deploy app.yaml cron.yaml`
+4. Install necessary libraries (using pip for python v2.7):
+    `pip2 install -t lib -r requirements.txt`
+5. Deploy the project: `gcloud app deploy app.yaml cron.yaml`
