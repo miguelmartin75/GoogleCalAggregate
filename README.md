@@ -33,11 +33,6 @@ python cal/main.py
 
 which will update your output calendar from the list of source calendars in `cal/config.py`.
 
-# TODO
-
-- Google App Engine
-    - For autonomous updating and OAuth2
-
 # Example
 
 The default configuration aggregates calendars relating to _competitive programming_ from sources
