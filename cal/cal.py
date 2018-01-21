@@ -66,8 +66,12 @@ class Calendar:
             if not include:
                 continue
 
-            start_local = start.astimezone(config.LOCAL_TIMEZONE)
-            end_local = end.astimezone(config.LOCAL_TIMEZONE)
+            try:
+                start_local = config.LOCAL_TIMEZONE.localize(start)
+                end_local = config.LOCAL_TIMEZONE.localize(end)
+            except:
+                start_local = start.astimezone(config.LOCAL_TIMEZONE)
+                end_local = end.astimezone(config.LOCAL_TIMEZONE)
 
             if self.time_range is not None:
                 if start_local == end_local:

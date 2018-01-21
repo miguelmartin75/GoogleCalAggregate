@@ -43,3 +43,13 @@ which will update your output calendar from the list of source calendars in `cal
 The default configuration aggregates calendars relating to _competitive programming_ from sources
 such as topcoder, atcoder and codeforces. The events are filtered to range between 5AM to 12AM
 Adelaide time (for the use of myself), and only SRMs and TCOs events from topcoder are considered.
+
+# Deployment
+
+To deploy, use Google App Engine. 
+
+1. Create an application in GAE
+2. Modify app.yaml to reflect the appropriate application name (in `application`) and version
+3. TODO
+
+Refer to this [document](https://cloud.google.com/appengine/docs/standard/python/tools/uploadinganapp#Python_Password-less_login_with_OAuth2) for more details.
